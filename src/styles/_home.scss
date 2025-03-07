@@ -1,0 +1,267 @@
+main {
+  .art_container {
+    
+    @apply relative bg-surface text-on-surface h-[calc(100vh-96px)] z-[1] px-[20px]
+    min-[768px]:px-[24px] min-[1200px]:h-[calc(100vh-96px)] min-[1200px]:rounded-tr-radius-36;
+    padding-block: 24px 48px;
+    overflow-y: overlay;
+
+
+    .banner {
+      @apply relative h-[700px] rounded-radius-24 overflow-hidden min-[768px]:h-[500px];
+
+      .banner_slider {
+
+
+        .slider_item {
+          @apply absolute top-0 right-[120%] w-full h-full bg-banner-background opacity-0 invisible;
+          transition: opacity 500ms ease;
+
+          &.active {
+            @apply right-0 opacity-[1] visible;
+          }
+
+          &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(202deg, hsl(283, 17%, 7%) 0%, hsla(220, 17%, 7%, 0.5) 100%)
+          }
+
+
+          .banner_content {
+            @apply absolute right-[24px] left-[24px] bottom-[206px] z-[1] text-text-color
+             min-[575px]:left-auto min-[575px]:max-w-[500px] min-[768px]:bottom-[56%]
+            min-[768px]:translate-y-[50%] min-[768px]:right-[50px] min-[1200px]:right-[100px] min-[1302px]:bottom-[50%];
+
+            & :is(.heading, .banner_text) {
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+            }
+
+            .heading {
+              -webkit-line-clamp: 3;
+              margin-block-end: 16px;
+
+            }
+
+
+
+            .genre {
+              @apply my-[12px] text-slate-100;
+            }
+
+            .banner_text {
+              -webkit-line-clamp: 2;
+              @apply mb-[24px] dir-l;
+              transition: 500ms ease;
+            }
+
+            .btn {
+              @apply bg-primary;
+
+              &:is(:hover, :focus-visible) {
+                @apply shadow-shadow-2;
+              }
+            }
+          }
+
+
+        }
+
+
+
+      }
+
+      .slider_control {
+        @apply absolute bottom-[20px] right-[20px] left-0
+         select-none py-[4px] pr-[4px] overflow-x-auto min-[575px]:right-[calc(100%-400px)] min-[1505px]:right-[calc(84%-400px)];
+        border-radius: 16px 16px 0 0;
+
+
+        &::-webkit-scrollbar {
+          @apply hidden;
+        }
+
+        .control_inner {
+          @apply flex gap-[12px];
+
+          &::after {
+            content: "";
+            @apply min-w-[12px];
+
+          }
+
+
+          .slider_item {
+            @apply w-[100px] rounded-radius-8 flex-shrink-0 brightness-[0.4];
+
+            &.active {
+              @apply brightness-[1] shadow-shadow-1;
+            }
+          }
+
+
+
+        }
+
+      }
+    }
+
+
+
+
+
+
+
+  }
+
+  .img_cover {
+    @apply w-full h-full object-cover;
+    transition: all 0.5s ease-in-out;
+
+    
+  }
+
+
+
+  .heading {
+    @apply text-white text-fs-heading font-bold tracking-[0.5px] leading-[1.2];
+  }
+
+
+  .btn {
+    @apply text-white text-fs-button font-bold flex max-w-max items-center gap-[12px] py-[12px] pl-[24px] pr-[20px] rounded-radius-8;
+    transition: 250ms ease;
+
+    img {
+      @apply rotate-180;
+    }
+  }
+
+
+
+
+
+  .meta_item {
+    @apply flex items-center gap-[4px];
+  }
+
+
+
+  .card_badge {
+    @apply bg-banner-background text-white text-fs-label font-bold px-[6px] rounded-radius-4 pt-[3px];
+    transition: all 0.5s ease-in-out;
+  }
+
+  .movie_list {
+    @apply pt-[32px];
+
+    .movie_card {
+      @apply  min-w-[200px] cursor-pointer;
+      transition: all 0.5s ease-in-out;
+
+      .card_head {
+        @apply relative overflow-hidden;
+      }
+
+
+      .play {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
+        transition: all 0.5s ease-in-out;
+        
+        img {
+          height: 90px;
+          width: 90px;
+         
+          
+        }
+      }
+
+
+      .card_banner {
+        @apply w-[200px];
+      }
+
+      .title {
+        @apply w-full whitespace-nowrap text-ellipsis overflow-hidden dir-l;
+        margin-block: 8px 4px;
+        transition: all 0.3s ease-in-out;
+
+        
+      }
+
+      .meta_list {
+        @apply justify-between p-[11px] scale-[0.8];
+        transition: all 0.5s ease-in-out;
+
+      }
+
+      .movie_text {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 7;
+        overflow: hidden;
+        @apply  dir-l text-gray-300 px-4 pt-3 text-fs-label ;
+      }
+
+      .card_btn {
+        @apply absolute inset-0 opacity-0 bg-[rgba(10,13,16,.6)];
+        backdrop-filter: blur(5px); 
+        transition: all 0.5s ease-in-out;
+
+      }
+
+      &:hover .card_btn {
+        @apply opacity-[1] rounded-radius-16;
+      }
+      &:hover .img_cover {
+        @apply scale-[1.1];
+      }
+
+      &:hover .play {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      &:hover .meta_list {
+        @apply scale-[1] text-red-600 font-bold;
+      }
+      &:hover .card_badge {
+        @apply text-red-500 font-bold; 
+      }
+
+      &:hover .title{
+        @apply text-red-400;
+      }
+    }
+
+  }
+
+}
+
+@media (min-width: 768px) {
+  .slider_item {
+    &::before {
+      background-image: linear-gradient(283deg, hsl(220, 17%, 7%) 0%, hsla(220, 17%, 7%, 0) 100%) !important
+    }
+  }
+}
+
+@media (max-width: 463px) {
+  main {
+    .grid_list{
+      .movie_card {
+        .movie_text {
+          @apply px-8 pt-8 text-[20px];
+          -webkit-line-clamp: 13;
+          
+        }
+      }
+
+    }
+  }
+}
